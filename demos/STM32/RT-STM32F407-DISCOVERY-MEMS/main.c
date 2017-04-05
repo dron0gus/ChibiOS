@@ -45,6 +45,10 @@ static void cmd_mem(BaseSequentialStream *chp, int argc, char *argv[]) {
   chprintf(chp, "heap free total  : %u bytes\r\n", size);
 }
 
+static void cmd_log(BaseSequentialStream *chp, int argc, char *argv[]) {
+    chprintf(chp, "log(18000)=%f\r\n", logf(18000));
+}
+
 static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[]) {
   static const char *states[] = {CH_STATE_NAMES};
   thread_t *tp;
@@ -83,6 +87,7 @@ static void cmd_test(BaseSequentialStream *chp, int argc, char *argv[]) {
 }
 
 static const ShellCommand commands[] = {
+  {"log", cmd_log},
   {"mem", cmd_mem},
   {"threads", cmd_threads},
   {"test", cmd_test},
